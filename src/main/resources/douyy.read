@@ -1,0 +1,5 @@
+-groupID 1 -ftpType 0
+
+{"begin_time":"2015-12-09 15:44:07","end_time":"2015-12-09 15:44:08","file_name":"03_100_0_00_20151008114400_10001.txt","file_optime":"20151209","file_path":"/data/hjpt/itf/netoper/fixdpi/itf_fix_dpi/guangdong/20151222/16/03_100_0_00_20151008114400_10001.txt.gz","op_time":"20151213","oper_time":"20151213164236455","prov_id":844,"tid":"itf_3gdpi_mbl_844"}
+
+ftp 192.168.8.52 2222      vascilpf / vasc-ilpf : /itf/qixin/dpi/fix/844/

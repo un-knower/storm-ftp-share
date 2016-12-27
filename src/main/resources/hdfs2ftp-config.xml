@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	现约定：根标签为 configuration，二级标签为property，属性名标签为name，属性值标签为value，属性注释说明标签为description
+	此文件中属性为默认值，请勿在此文件中直接修改默认值。如需修改属性值，请在 storm-site.xml 中新建标签，并修改其值。
+	如需引用加载其他配置文件，只需在 storm-site.xml 新建相应标签，xml格式的为include-xml，properties格式为include-properties。
+-->
+
+<configuration>
+	
+	<include-properties>jdbc.properties</include-properties>
+	<include-properties>hdfs2ftp.properties</include-properties>
+
+	<property>
+		<name>zkHost</name>
+		<!--value>NM-304-RH5885V3-BIGDATA-001:2181\,NM-304-RH5885V3-BIGDATA-002:2181\,NM-304-RH5885V3-BIGDATA-007:2181\,NM-304-RH5885V3-BIGDATA-008:2181\,NM-304-RH5885V3-BIGDATA-009:2181/kafka</value -->
+		<value>hadoop51:2181\,hadoop53:2181\,hadoop55:2181/kafka822</value>
+		<description>zookeeper配置</description>
+	</property>
+	
+	<property>
+		<name>hdfsUrl</name>
+		<!-- value>hdfs://NM-304-RH5885V3-BIGDATA-001:54310</value -->
+		<value>hdfs://hadoop51:8020</value>
+		<description>hdfsUrl</description>
+	</property>
+	
+	<property>
+		<name>numWorkers</name>
+		<value>1</value>
+		<description>worker数</description>
+	</property>
+	
+	<property>
+		<name>spoutParallelism</name>
+		<value>1</value>
+		<description>spout并发数</description>
+	</property>
+	
+	<property>
+		<name>auditBoltParallelism</name>
+		<value>1</value>
+		<description>bolt并发数</description>
+	</property>
+	
+	<property>
+		<name>kafkaUpdateParallelism</name>
+		<value>1</value>
+		<description>并发数</description>
+	</property>
+	
+	<property>
+		<name>consumerTopic</name>
+		<value>share_ftp_file</value>
+		<description>kafka源数据topic</description>
+	</property>
+	
+	<property>
+		<name>normalProducerTopic</name>
+		<value>share_ftp_comm</value>
+		<description>正常输出topic</description>
+	</property>
+	
+	<property>
+		<name>errorProducerTopic</name>
+		<value>share_ftp_error</value>
+		<description>异常输出topic</description>
+	</property>
+	
+	<property>
+		<name>forceFromStart</name>
+		<value>false</value>
+		<description>是否每次都重新开始消费topic的消息，默认false</description>
+	</property>
+	
+	<property>
+		<name>spoutClientId</name>
+		<value>share_ftp</value>
+		<description>spout状态信息保存在zookeeper的路径，选填</description>
+	</property>
+	
+	<property>
+		<name>producerBrokerList</name>
+		<value>hadoop53:9099\,hadoop54:9099\,hadoop55:9099</value>
+		<description>kafka接收消息的 broker 地址列表，必填</description>
+	</property>
+	
+	<property>
+		<name>producer.type</name>
+		<value>async</value>
+		<description>产生消息的类型，同步sync，异步async，选填</description>
+	</property>
+
+	<property>
+		<name>batch.num.messages</name>
+		<value>400</value>
+		<description>异步模式下，一个batch发送的消息数量</description>
+	</property>
+	
+	<property>
+		<name>queue.enqueue.timeout.ms</name>
+		<value>-1</value>
+		<description>当缓冲的消息数量达到max时是否继续阻塞或抛弃消息，-1无阻塞超时限制，0立即抛弃</description>
+	</property>
+	
+	<property>
+		<name>request.required.acks</name>
+		<value>-1</value>
+		<description>控制一个produce请求怎样才能算完成，0无需等待来自broker的ack，1得到leader 的ack，-1所有的ISR都接收到数据</description>
+	</property>
+	
+	<property>
+		<name>isUnicodeDelimiter</name>
+		<value>false</value>
+		<description>消息分隔符是否是unicode编码,分隔符为\\u0005、\\u007c，则为true</description>
+	</property>
+	
+	<property>
+		<name>messageDelimiter</name>
+		<value>\\|</value>
+		<description>消费的消息分隔符,要注意分隔符是否为正则中的特殊字符，如|需要转义为\\|</description>
+	</property>
+	
+	<property>
+		<name>messageTimeoutSecs</name>
+		<value>500</value>
+		<description>messageTimeoutSecs</description>
+	</property>
+
+	<property>
+		<name>bufferSizeBytes</name>
+		<value>1024</value>
+		<description>spoutconfig bufferSizeBytes</description>
+	</property>
+	
+	<property>
+		<name>fetchSizeBytes</name>
+		<value>1024</value>
+		<description>spoutconfig fetchSizeBytes</description>
+	</property>
+
+	<property>
+		<name>krb_flag</name>
+		<value>true</value>
+		<description>enable kerberos for hdfs </description>
+	</property>
+
+	<property>
+		<name>krb_principal</name>
+		<value>op@HADOOP.CHINATELECOM.CN</value>
+		<description>for hdfs kerberos</description>
+	</property>
+
+	<property>
+		<name>krb_keystore</name>
+		<value>/usr/local/storm/conf/op.keytab</value>
+		<description>for hdfs kerberos</description>
+	</property>
+
+</configuration>
